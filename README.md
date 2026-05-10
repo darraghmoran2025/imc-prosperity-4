@@ -31,7 +31,6 @@ a modular strategy framework that can be bundled into the single-file
 |   |-- config.py
 |   |-- trader.py
 |   |-- products/
-|   |   |-- emeralds.py
 |   |   `-- tomatoes.py
 |   `-- strategies/
 |       |-- pair_trading.py
@@ -58,19 +57,6 @@ The active modular strategy lives under `src/`.
   basket arbitrage, seasonal signals, and observation-driven signals.
 
 ## Active Product Strategies
-
-### EMERALDS
-
-`src/products/emeralds.py` implements a fixed fair-value market maker around
-`10_000`.
-
-The strategy:
-
-- buys asks below fair value and sells bids above fair value;
-- trades at fair value only when it helps flatten inventory;
-- posts passive quotes inside common bot walls;
-- adjusts quote placement based on inventory;
-- removes any self-crossing buy/sell pairs before returning orders.
 
 ### TOMATOES
 
@@ -115,11 +101,17 @@ package imports, hoists imports to the top, and writes a self-contained
 Use `solution.py` for upload when working from the modular framework. Historical
 round-specific solution files are kept separately for reference and comparison.
 
+Note: the current `main` branch includes a Round 4 branch merge that removed the
+modular `src/products/emeralds.py` source file while preserving earlier bundled
+and standalone solution artifacts. If rebuilding from `src/`, verify the
+`SRC_FILES` list in `build.py` matches the modules currently present.
+
 ## Historical Solutions And Notes
 
 The repository preserves several standalone solutions and review notes:
 
 - `solution_round1.py`: Round 1 competition submission.
+- `round2_best_8899.py`: Round 2 best-submission artifact.
 - `solution_round3_63371.py`: high-PnL Round 3 path-replay candidate.
 - `solution_round3_robust_hp_open9980_ve20_vsafe.py`: Round 3 non-replay
   candidate focused on observable market-state rules.
